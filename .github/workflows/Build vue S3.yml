@@ -34,4 +34,4 @@ jobs:
           aws s3 cp \
             --recursive \
             --region ap-northeast-2 \
-            dist s3.ap-northeast-2.amazonaws.com/audiodefence/
+            dist audiodefence
