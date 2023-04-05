@@ -1,5 +1,5 @@
 # audiodefence-frontend.yml
-name: sub-branch
+name: audiodefence-frontend
 
 on:
   push:
