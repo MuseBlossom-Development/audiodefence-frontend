@@ -30,4 +30,4 @@ jobs:
           AWS_ACCESS_KEY_ID: ${{ secrets.AKIAZBRIIDPDLZ4W3QGB }}          # Github Actions에 등록한 secrets
           AWS_SECRET_ACCESS_KEY: ${{ secrets.OPOFtJK1wPFh9FtihP9JsLQoZBsYhL9rQhnKkWVY }}  # Github Actions에 등록한 secrets
         run: |
-          aws s3 cp --recursive --region AwsRegion(Aws등록리전) vue프로젝트빌드폴더 AwsS3ARN명
+          aws s3 sync ./build s3://audiodefence
