@@ -26,12 +26,6 @@
                                     </div>
                                 </form>
                             </div>
-
-                            <!-- <div class="social-share-link"> <a href="#"><span><i
-                            class="icofont-facebook"></i></span></a> <a href="#"><span><i
-                            class="icofont-twitter"></i></span></a> <a href="#"><span><i
-                            class="icofont-whatsapp"></i></span></a> <a href="#"><span><i
-                            class="icofont-telegram"></i></span></a> </div> -->
                         </div>
                     </div>
                 </div>
@@ -97,7 +91,7 @@
             <div class="col-xxl-3 col-xl-6 col-lg-6">
                 <div class="card welcome-profile">
                     <div class="card-body">
-                        <img src="./images/profile/2.png" alt=""/>
+                        <img src="../assets/images/profile/2.png" alt=""/>
                         <h4>Welcome, Jannatul Maowa!</h4>
                         <p>
                             Looks like you are not verified yet. Verify yourself to use the full potential
