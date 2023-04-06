@@ -1,6 +1,7 @@
 <template>
-  <div class="ground">
+  <div id="main-wrapper">
     <Header/>
+    <Sidebar/>
     <Body/>
     <Footer/>
   </div>
@@ -8,14 +9,10 @@
 
 <script>
 import Header from "./Header.vue";
+import Sidebar from "./Sidebar.vue";
 import Body from "./Body.vue";
 import Footer from "./Footer.vue";
 export default {
-  components:{Header, Body, Footer}
-
+  components:{Header, Sidebar, Body, Footer}
 }
 </script>
-<style>
-*{margin:0;padding:0;}
-header, footer{padding:10px;text-align:center;background:#ededed;border-bottom:1px solid #d4d4d4;}
-</style>

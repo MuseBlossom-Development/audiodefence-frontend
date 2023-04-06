@@ -1,5 +1,7 @@
 <template>
-  <footer>Copyright© MuseBlossom All rights reserved.</footer>
+  <div class="footer">
+  <footer></footer>
+  </div>
 </template>
 
 <script>
