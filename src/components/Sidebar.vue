@@ -9,14 +9,14 @@
                 <li>
                     <a href="index.html" data-toggle="tooltip" data-placement="right" title="Home">
                         <span>
-                            <i class="icofont-ui-home"></i>
+                            <i class="icofont-ui-home"> About</i>
                         </span>
                     </a>
                 </li>
                 <li>
                     <a href="trade.html" data-toggle="tooltip" data-placement="right" title="Trade">
                         <span>
-                            <i class="icofont-stack-exchange"></i>
+                            <i class="icofont-stack-exchange"> FAQ</i>
                         </span>
                     </a>
                 </li>
@@ -27,14 +27,14 @@
                         data-placement="right"
                         title="Wallet">
                         <span>
-                            <i class="icofont-wallet"></i>
+                            <i class="icofont-wallet"> Pricing</i>
                         </span>
                     </a>
                 </li>
                 <li>
                     <a href="price.html" data-toggle="tooltip" data-placement="right" title="Price">
                         <span>
-                            <i class="icofont-price"></i>
+                            <i class="icofont-price">Contacts</i>
                         </span>
                     </a>
                 </li>

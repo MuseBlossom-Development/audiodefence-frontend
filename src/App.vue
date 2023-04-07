@@ -1,7 +1,5 @@
 <template>
-<div class="app">
     <Ground/>
-</div>
 </template>
 
 <script>
