@@ -1,10 +1,10 @@
 <template>
-    <Ground/>
+<Home/>
 </template>
-
 <script>
-import Ground from "./components/Ground.vue"
-export default {
-    components:{Ground}
-};
+import Home from "./views/Home.vue";
+export default{
+  name: 'App',
+  components:{  Home  },
+}
 </script>

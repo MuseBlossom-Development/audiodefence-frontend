@@ -1,8 +1,3 @@
 <template>
-<div class="content-body">
-</div>
+    This is body page
 </template>
-
-<script>
-    export default {}
-</script>

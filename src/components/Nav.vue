@@ -1,7 +1,7 @@
 <template>
     <div class="topBar">
-        <a href="#">내 정보</a>
-        <a href="#">서명 내역</a>
-        <a href="#">Contact</a>
+        <Router-link class="item" to="/about">About</Router-link> 
+        <Router-link class="item" to="/faq">FAQ</Router-link> 
+        <Router-link class="item" to="/contact">Contact</Router-link> 
     </div>
 </template>

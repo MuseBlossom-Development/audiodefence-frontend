@@ -1,23 +1,19 @@
 <template>
     <div class="header">
         <div class="tabList">
-            <a href="#" class="item on">Dashboard</a>
-            <a href="#" class="item">워터마크 생성 및 링크 이메일 발송</a>
-            <a href="#" class="item">워터마크 생성 및 다운로드</a>
-            <a href="#" class="item">워터마크 검증</a>
+          <Router-link class="item" to="/dashboard">Dashboard</Router-link> 
+          <Router-link class="item" to="/mail">워터마크 생성 및 링크 이메일 발송</Router-link> 
+          <Router-link class="item" to="/download">워터마크 생성 및 다운로드</Router-link> 
+          <Router-link class="item" to="/cloud">파일 저장소</Router-link> 
+          <Router-link class="item" to="/detection">워터마크 검증</Router-link> 
         </div>
-        <Nav/>
     </div>
 </template>
 <script>
-    import Nav from "./Nav.vue";
-    export default {components: {
-            Nav
-        }}
 </script>
 <style lang="scss" >
   .tabList{
-    text-align:right;
+    text-align:center;
     background:#fff;
   }
   .tabList, .topBar {
