@@ -34,12 +34,12 @@ const routes = [
     {path: '/download', component: Download, meta: { auth: true } }, 
     {path: '/cloud', component: Cloud, meta: { auth: true } }, 
     {path: '/detection', component: Detection, meta: { auth: true } }, 
-    {path: '/account', component: Account, meta: { auth: true } }, 
-    {path: '/contactlist', component: Contactlist, meta: { auth: true } }, 
-    {path: '/links', component: Links, meta: { auth: true } }, 
-    {path: '/signatures', component: Signatures, meta: { auth: true } }, 
-    {path: '/activity', component: Activity, meta: { auth: true } }, 
-    {path: '/price', component: Price, meta: { auth: true } } 
+    {path: '/account', component: Account}, 
+    {path: '/contactlist', component: Contactlist}, 
+    {path: '/links', component: Links}, 
+    {path: '/signatures', component: Signatures}, 
+    {path: '/activity', component: Activity}, 
+    {path: '/price', component: Price} 
 ];
 
 // 라우터 생성
