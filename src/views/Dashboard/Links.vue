@@ -1,4 +1,5 @@
- <template>
+<template>
+  <Header/>
   <Sidebar/>
   <div class="content-body">
     <div class="container">
@@ -7,9 +8,10 @@
   </div>
 </template> 
 <script> 
-  import Sidebar from "../../components/Sidebar.vue";
+import Header from "../../components/Header.vue";
+import Sidebar from "../../components/Sidebar.vue";
   export default {
     name: 'Links',
-    components:{Sidebar}
+    components:{Sidebar, Header}
   }
   </script>

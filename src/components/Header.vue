@@ -9,21 +9,3 @@
         </div>
     </div>
 </template>
-<script>
-</script>
-<style lang="scss" >
-  .tabList{
-    text-align:center;
-    background:#fff;
-  }
-  .tabList, .topBar {
-    max-width:1320px;
-    a {
-        padding: 10px;
-        display: inline-block;
-    }
-    a.on{
-      font-weight:bold;
-    }
-}
-</style>

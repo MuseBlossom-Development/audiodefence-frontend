@@ -1,13 +1,17 @@
 <template>
     <Sidebar/>
+    <Header/>
     <div class="content-body">
         <div class="container">
             <h1>워터마크 생성 및 다운로드</h1>
         </div>
     </div>
 </template>
-<script>
-    export default {}
+<script> 
+import Sidebar from "../components/Sidebar.vue";
+import Header from "../components/Header.vue";
+export default {
+  name: 'Download',
+  components:{Sidebar, Header}
+}
 </script>
-
-<style></style>
