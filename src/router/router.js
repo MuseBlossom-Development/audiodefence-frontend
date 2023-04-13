@@ -22,25 +22,24 @@ const Activity = () => import ('../views/dashboard/Activity.vue');
 const Price = () => import ('../views/dashboard/Price.vue');
 
 const routes = [
-    { path: '/', component: Home}, 
-    { path: '/login', component: Login, meta: { auth: false } }, 
-    { path: '/signup', component: Signup, meta: { auth: false } }, 
-    { path: '/pwinquiry', component: Pwinquiry, meta: { auth: false } }, 
-    { path: '/about', component: About}, 
-    { path: '/faq', component: Faq}, 
-    { path: '/contact', component: Contact }, 
-    { path: '/dashboard', component: Dashboard, meta: { auth: true } }, 
-    { path: '/mail', component: Mail, meta: { auth: true } }, 
-    { path: '/download', component: Download, meta: { auth: true } }, 
-    { path: '/cloud', component: Cloud, meta: { auth: true }  }, 
-    { path: '/detection', component: Detection, meta: { auth: true } }, 
-    { path: '/account', component: Account, meta: { auth: true } }, 
-    { path: '/contactlist', component: Contactlist, meta: { auth: true } }, 
-    {  path: '/links', component: Links, meta: { auth: true } }, 
-    { path: '/signatures', component: Signatures, meta: { auth: true } }, 
-    { path: '/activity', component: Activity, meta: { auth: true } }, 
-    { path: '/price', component: Price, meta: { auth: true } }
-
+    {path: '/', component: Home }, 
+    {path: '/login', component: Login, meta: { auth: false } }, 
+    {path: '/signup', component: Signup, meta: { auth: false } }, 
+    {path: '/pwinquiry', component: Pwinquiry, meta: { auth: false } }, 
+    {path: '/about', component: About }, 
+    {path: '/faq', component: Faq }, 
+    {path: '/contact', component: Contact }, 
+    {path: '/dashboard', component: Dashboard, meta: { auth: true } }, 
+    {path: '/mail', component: Mail, meta: { auth: true } }, 
+    {path: '/download', component: Download, meta: { auth: true } }, 
+    {path: '/cloud', component: Cloud, meta: { auth: true } }, 
+    {path: '/detection', component: Detection, meta: { auth: true } }, 
+    {path: '/account', component: Account, meta: { auth: true } }, 
+    {path: '/contactlist', component: Contactlist, meta: { auth: true } }, 
+    {path: '/links', component: Links, meta: { auth: true } }, 
+    {path: '/signatures', component: Signatures, meta: { auth: true } }, 
+    {path: '/activity', component: Activity, meta: { auth: true } }, 
+    {path: '/price', component: Price, meta: { auth: true } } 
 ];
 
 // 라우터 생성
@@ -51,10 +50,18 @@ const router = createRouter({
 
 
 router.beforeEach((to, from, next) => {
-    if ('auth' in to.meta && to.meta.auth && !store.getters[`auth/${IS_USER_AUTHENTICATE_GETTER}`]) {
+    if (
+        'auth' in to.meta &&
+        to.meta.auth &&
+        !store.getters[`auth/${IS_USER_AUTHENTICATE_GETTER}`]
+    ) {
         next('/login');
-    } else if ('auth' in to.meta && !to.meta.auth && store.getters[`auth/${IS_USER_AUTHENTICATE_GETTER}`]) {
-        next('/');
+    } else if (
+        'auth' in to.meta &&
+        !to.meta.auth &&
+        store.getters[`auth/${IS_USER_AUTHENTICATE_GETTER}`]
+    ) {
+        next('/dashboard');
     } else {
         next();
     }
