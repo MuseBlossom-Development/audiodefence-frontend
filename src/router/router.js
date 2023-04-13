@@ -45,9 +45,10 @@ const routes = [
 
 // 라우터 생성
 const router = createRouter({
-    history: createWebHistory(process.env.BASE_URL),
-    routes
+    history: createWebHistory(),
+    routes,
 });
+
 
 router.beforeEach((to, from, next) => {
     if ('auth' in to.meta && to.meta.auth && !store.getters[`auth/${IS_USER_AUTHENTICATE_GETTER}`]) {
