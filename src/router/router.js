@@ -14,12 +14,12 @@ const Mail = () => import ('../views/Mail.vue');
 const Download = () => import ('../views/Download.vue');
 const Cloud = () => import ('../views/Cloud.vue');
 const Detection = () => import ('../views/Detection.vue');
-const Account = () => import ('../views/dashboard/Account.vue');
-const Contactlist = () => import ('../views/dashboard/Contactlist.vue');
-const Links = () => import ('../views/dashboard/Links.vue');
-const Signatures = () => import ('../views/dashboard/Signatures.vue');
-const Activity = () => import ('../views/dashboard/Activity.vue');
-const Price = () => import ('../views/dashboard/Price.vue');
+// const Account = () => import ('../views/dashboard/Account.vue');
+// const Contactlist = () => import ('../views/dashboard/Contactlist.vue');
+// const Links = () => import ('../views/dashboard/Links.vue');
+// const Signatures = () => import ('../views/dashboard/Signatures.vue');
+// const Activity = () => import ('../views/dashboard/Activity.vue');
+// const Price = () => import ('../views/dashboard/Price.vue');
 
 const routes = [
     {path: '/', component: Home }, 
@@ -34,12 +34,12 @@ const routes = [
     {path: '/download', component: Download, meta: { auth: true } }, 
     {path: '/cloud', component: Cloud, meta: { auth: true } }, 
     {path: '/detection', component: Detection, meta: { auth: true } }, 
-    {path: '/account', component: Account}, 
-    {path: '/contactlist', component: Contactlist}, 
-    {path: '/links', component: Links}, 
-    {path: '/signatures', component: Signatures}, 
-    {path: '/activity', component: Activity}, 
-    {path: '/price', component: Price} 
+    // {path: '/account', component: Account, meta: { auth: true } }, 
+    // {path: '/contactlist', component: Contactlist, meta: { auth: true } }, 
+    // {path: '/links', component: Links, meta: { auth: true } }, 
+    // {path: '/signatures', component: Signatures, meta: { auth: true } }, 
+    // {path: '/activity', component: Activity, meta: { auth: true } }, 
+    // {path: '/price', component: Price, meta: { auth: true } } 
 ];
 
 // 라우터 생성
