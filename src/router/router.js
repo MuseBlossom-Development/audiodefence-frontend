@@ -52,42 +52,42 @@ const routes = [
             {
                 path: '/account',
                 name: 'Account',
-                component: () => import ('@/views/dashboard/Account.vue'),
+                component: () => import ('@/views/Account.vue'),
                 meta: {
                     auth: true
                 }
             }, {
                 path: '/contactlist',
                 name: 'Contactlist',
-                component: () => import ('@/views/dashboard/Contactlist.vue'),
+                component: () => import ('@/views/Contactlist.vue'),
                 meta: {
                     auth: true
                 }
             }, {
                 path: '/links',
                 name: 'Links',
-                component: () => import ('@/views/dashboard/Links.vue'),
+                component: () => import ('@/views/Links.vue'),
                 meta: {
                     auth: true
                 }
             }, {
                 path: '/signatures',
                 name: 'Signatures',
-                component:() => import ('@/views/dashboard/Signatures.vue'),
+                component:() => import ('@/views/Signatures.vue'),
                 meta: {
                     auth: true
                 }
             }, {
                 path: '/activity',
                 name: 'Activity',
-                component: () => import ('@/views/dashboard/Activity.vue'),
+                component: () => import ('@/views/Activity.vue'),
                 meta: {
                     auth: true
                 }
             }, {
                 path: '/price',
                 name: 'Price',
-                component: () => import ('@/views/dashboard/Price.vue'),
+                component: () => import ('@/views/Price.vue'),
                 meta: {
                     auth: true
                 }
