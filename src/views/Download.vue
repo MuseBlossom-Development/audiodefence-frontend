@@ -1,5 +1,4 @@
 <template>
-    <Sidebar/>
     <Header/>
     <div class="content-body">
         <div class="container">
@@ -8,10 +7,9 @@
     </div>
 </template>
 <script> 
-import Sidebar from "../components/Sidebar.vue";
 import Header from "../components/Header.vue";
 export default {
   name: 'Download',
-  components:{Sidebar, Header}
+  components:{Header}
 }
 </script>

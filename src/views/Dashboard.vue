@@ -2,22 +2,6 @@
     <Sidebar/>
     <Header/>
     <div class="content-body">
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>Id</th>
-                    <th>Title</th>
-                    <th>Description</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr v-for="dashbord in dashbords" :key="dashbord.id">
-                    <td>{{ dashbord.id }}</td>
-                    <td>{{ dashbord.title }}</td>
-                    <td>{{ dashbord.description }}</td>
-                </tr>
-            </tbody>
-        </table>
         <router-view/>
     </div>
 </template>

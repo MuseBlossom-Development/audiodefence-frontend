@@ -14,7 +14,7 @@ const Mail = () => import ('../views/Mail.vue');
 const Download = () => import ('../views/Download.vue');
 const Cloud = () => import ('../views/Cloud.vue');
 const Detection = () => import ('../views/Detection.vue');
-// const Account = () => import ('../views/dashboard/Account.vue');
+const Account = () => import ('../views/dashboard/Account.vue');
 // const Contactlist = () => import ('../views/dashboard/Contactlist.vue');
 // const Links = () => import ('../views/dashboard/Links.vue');
 // const Signatures = () => import ('../views/dashboard/Signatures.vue');
@@ -34,7 +34,7 @@ const routes = [
     {path: '/download', component: Download, meta: { auth: true } }, 
     {path: '/cloud', component: Cloud, meta: { auth: true } }, 
     {path: '/detection', component: Detection, meta: { auth: true } }, 
-    // {path: '/account', component: Account, meta: { auth: true } }, 
+    {path: '/account', component: Account, meta: { auth: true } }, 
     // {path: '/contactlist', component: Contactlist, meta: { auth: true } }, 
     // {path: '/links', component: Links, meta: { auth: true } }, 
     // {path: '/signatures', component: Signatures, meta: { auth: true } }, 
