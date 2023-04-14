@@ -1,14 +1,14 @@
 <template>
 <the-loader v-if="showLoading"></the-loader>  
 <div class="topBar">
-  <ul>
-  <li><Router-link class="item" to="/">Home</Router-link></li>
-  <li><Router-link class="item" to="/about">About</Router-link></li>
-  <li><Router-link class="item" to="/faq">FAQ</Router-link></li>
-  <li><Router-link class="item" to="/contact">Contact</Router-link></li>
+  <ul class="nav justify-content-center">
+  <li><Router-link class="nav-item" to="/">Home</Router-link></li>
+  <li><Router-link class="nav-item" to="/about">About</Router-link></li>
+  <li><Router-link class="nav-item" to="/faq">FAQ</Router-link></li>
+  <li><Router-link class="nav-item" to="/contact">Contact</Router-link></li>
   <li v-if="isAuthenticated">
     <Router-link class="item" to="/dashboard">Dashboard</Router-link>
-    <button @click.prevent="onLogout" class="item">로그아웃</button>
+    <button @click.prevent="onLogout" class="btn btn-primary">로그아웃</button>
   </li>
   <li v-if="!isAuthenticated">
     <Router-link class="item" to="/login">로그인</Router-link>

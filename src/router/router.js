@@ -1,97 +1,93 @@
 import {createRouter, createWebHistory} from 'vue-router';
 import store from '../store/store';
 import {IS_USER_AUTHENTICATE_GETTER} from '../store/storeconstants';
-
-const Home = () => import ('../views/Home.vue');
-const Login = () => import ('../views/Login.vue');
-const Signup = () => import ('../views/Signup.vue');
-const Pwinquiry = () => import ('../views/Pwinquiry.vue');
-const About = () => import ('../views/About.vue');
-const Faq = () => import ('../views/FAQ.vue');
-const Contact = () => import ('../views/Contact.vue');
-const Dashboard = () => import ('../views/Dashboard.vue');
-const Mail = () => import ('../views/Mail.vue');
-const Download = () => import ('../views/Download.vue');
-const Cloud = () => import ('../views/Cloud.vue');
-const Detection = () => import ('../views/Detection.vue');
-const Account = () => import ('../views/dashboard/Account.vue');
-const Contactlist = () => import ('../views/dashboard/Contactlist.vue');
-const Links = () => import ('../views/dashboard/Links.vue');
-const Signatures = () => import ('../views/dashboard/Signatures.vue');
-const Activity = () => import ('../views/dashboard/Activity.vue');
-const Price = () => import ('../views/dashboard/Price.vue');
+import Home from '../views/Home.vue';
 
 const routes = [
     {
         path: '/',
-        component: Home
+        name: 'Home',
+        component: Home,
     }, {
         path: '/login',
-        component: Login,
+        name: 'Login',
+        component: () => import ('@/views/Login.vue'),
         meta: {
             auth: false
         }
     }, {
         path: '/signup',
-        component: Signup,
+        name: 'Signup',
+        component: () => import ('@/views/Signup.vue'),
         meta: {
             auth: false
         }
     }, {
         path: '/pwinquiry',
-        component: Pwinquiry,
+        name: 'Pwinquiry',
+        component: () => import ('@/views/Pwinquiry.vue'),
         meta: {
             auth: false
         }
     }, {
         path: '/about',
-        component: About
+        name: 'About',
+        component: () => import ('@/views/About.vue'),
     }, {
         path: '/faq',
-        component: Faq
+        name: 'Faq',
+        component: () => import ('@/views/FAQ.vue'),
     }, {
         path: '/contact',
-        component: Contact
+        name: 'Contact',
+        component: () => import ('@/views/Contact.vue'),
     }, {
         path: '/dashboard',
-        component: Dashboard,
+        name: 'Dashboard',
+        component: () => import ('@/views/Dashboard.vue'),
         meta: {
             auth: true
         },
         children: [
             {
                 path: '/account',
-                component: Account,
+                name: 'Account',
+                component: () => import ('@/views/dashboard/Account.vue'),
                 meta: {
                     auth: true
                 }
             }, {
                 path: '/contactlist',
-                component: Contactlist,
+                name: 'Contactlist',
+                component: () => import ('@/views/dashboard/Contactlist.vue'),
                 meta: {
                     auth: true
                 }
             }, {
                 path: '/links',
-                component: Links,
+                name: 'Links',
+                component: () => import ('@/views/dashboard/Links.vue'),
                 meta: {
                     auth: true
                 }
             }, {
                 path: '/signatures',
-                component: Signatures,
+                name: 'Signatures',
+                component:() => import ('@/views/dashboard/Signatures.vue'),
                 meta: {
                     auth: true
                 }
             }, {
                 path: '/activity',
-                component: Activity,
+                name: 'Activity',
+                component: () => import ('@/views/dashboard/Activity.vue'),
                 meta: {
                     auth: true
                 }
             }, {
                 path: '/price',
-                component: Price,
+                name: 'Price',
+                component: () => import ('@/views/dashboard/Price.vue'),
                 meta: {
                     auth: true
                 }
@@ -99,25 +95,29 @@ const routes = [
             ]
         }, {
             path: '/mail',
-            component: Mail,
+            name: 'Mail',
+            component: () => import ('@/views/Mail.vue'),
             meta: {
                 auth: true
             }
         }, {
             path: '/download',
-            component: Download,
+            name: 'Download',
+            component: () => import ('@/views/Download.vue'),
             meta: {
                 auth: true
             }
         }, {
             path: '/cloud',
-            component: Cloud,
+            name: 'Cloud',
+            component: () => import ('@/views/Cloud.vue'),
             meta: {
                 auth: true
             }
         }, {
             path: '/detection',
-            component: Detection,
+            name: 'Detection',
+            component: () => import ('@/views/Detection.vue'),
             meta: {
                 auth: true
             }
