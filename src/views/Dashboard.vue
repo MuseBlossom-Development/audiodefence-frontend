@@ -1,9 +1,13 @@
 <template>
-    <Sidebar/>
     <Header/>
-    <div class="content-body">
-        <router-view/>
-    </div>
+    <b-row>
+        <b-col>
+            <Sidebar/>
+        </b-col>
+        <b-col cols="10">
+           <router-view/>
+        </b-col>
+    </b-row >
 </template>
 <script>
     import axiosInstance from '../services/AxiosTokenInstance';
@@ -20,23 +24,22 @@
             ...mapGetters('auth', {token: GET_USER_TOKEN_GETTER})
         },
         mounted() {
-          this.showLoading(true);
-          axiosInstance
+            this.showLoading(true);
+            axiosInstance
                 .get(
                     `https://audio-defence-frontend-default-rtdb.firebaseio.com/dashbord.json`,
                 )
                 .then((response) => {
                     this.formatDashbord(response.data);
                     this.showLoading(false);
-                }).catch(() => {
-                this.showLoading(false);
-            });
+                })
+                .catch(() => {
+                    this.showLoading(false);
+                });
         },
         methods: {
-          ...mapMutations({
-            showLoading: LOADING_SPINNER_SHOW_MUTATION,
-          }),
-          formatDashbord(dashbords) {
+            ...mapMutations({showLoading: LOADING_SPINNER_SHOW_MUTATION}),
+            formatDashbord(dashbords) {
                 for (let key in dashbords) {
                     this
                         .dashbords
@@ -56,3 +59,6 @@
         }
     };
 </script>
+<style scoped>
+.row{min-height:100%;}
+</style>
