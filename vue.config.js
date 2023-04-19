@@ -1,11 +1,11 @@
 module.exports = {
-  devServer: {
-      proxy: {
-          "/api": {
-              target: "http://localhost:5000"
-          }
-      }
-  }
+    devServer: {
+        proxy: {
+            "/api": {
+                target: "http://localhost:3000"
+            }
+        }
+    }
 }
 // const { defineConfig } = require('@vue/cli-service')
 // module.exports = defineConfig({
@@ -14,7 +14,7 @@ module.exports = {
 //   devServer:{
 //     proxy:{
 //       "/api":{
-//         target:"http://localhost:5000/",
+//         target:"http://localhost:3000/",
 //         changeOrigin: true,
 //       }
 //     }

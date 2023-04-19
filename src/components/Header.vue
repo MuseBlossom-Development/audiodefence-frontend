@@ -1,7 +1,7 @@
 <template>
 <b-row>
   <b-navbar>
-    <b-navbar-brand><img src="../assets/images/Logo-w.png"/></b-navbar-brand>
+    <b-navbar-brand to="/"><img src="../assets/images/Logo-w.png"/></b-navbar-brand>
     <b-navbar-nav>
       <b-nav-item>
           <Router-link class="nav-link" to="/dashboard">
@@ -42,7 +42,6 @@
       background: #0d6efd;
       .nav-link {
           color: #fff;
-
       }
       p {
           margin: 0;
