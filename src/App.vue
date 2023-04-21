@@ -45,6 +45,7 @@
         () => import ('./components/TheLoader.vue'),
     );
     export default {
+        compatConfig: { MODE: 3 },
         name: 'App',
         computed: {
             ...mapState({
@@ -82,7 +83,6 @@
     };
 </script>
 <style lang="scss">
-*{margin:0;padding:0;}
 #app{
     font-family: "Gothic A1";
     font-weight:500;
@@ -91,4 +91,5 @@
 a{
     text-decoration:none !important;
     }
+button+button{margin-left:5px;}
 </style>

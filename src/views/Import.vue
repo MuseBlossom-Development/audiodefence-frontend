@@ -1,120 +1,139 @@
 <template>
-    <div class="container">
-        <div class="input-group mb-3">
-            <div class="custom-file">
-                <input
-                    type="file"
-                    multiple="multiple"
-                    @change="onFileChange"
-                    class="hidden-input"
-                    id="fileInput"></div>
-                <div class="input-group-append">
-                    <button
-                        class="btn btn-primary"
-                        onclick="document.getElementById('fileInput').click();">내 컴퓨터</button>
+    <div class="custom-file">
+        <input
+            type="file"
+            multiple="multiple"
+            @change="onFileChange"
+            class="hidden-input"
+            id="fileInput"></div>
+        <div class="m-3">
+            <b-button
+                variant="dark"
+                onclick="document.getElementById('fileInput').click();">내 컴퓨터</b-button>
+            <b-button disabled="disabled" variant="primary">내 저장소</b-button>
+        </div>
+        <div
+            class="drop-zone border rounded p-3 mb-3"
+            @dragover="onDragOver"
+            @drop="onDrop"
+            @dragleave="onDragLeave"
+            :class="{'bg-info': isDraggingOver}">
+            <p v-if="showDropMessage" class="text-center">여기에 파일을 끌어오세요.</p>
+            <div class="mt-4">
+                <h2>음원 목록</h2>
+                <div class="m-3">
+                    <b-button @click="cancelAllUploads" variant="danger">전체 취소</b-button>
                 </div>
-                <button @click="cancelAllUploads" class="btn btn-danger">Cancel All Uploads</button>
-                <button @click="addToQueue" class="btn btn-primary">Add to Queue</button>
+                <table class="table table-bordered table-hover">
+                    <thead class="thead-light">
+                        <tr>
+                            <th><input type="checkbox" v-model="selectAll" @change="toggleSelectAll"/></th>
+                            <th>Play</th>
+                            <th>Name</th>
+                            <th>Size (bytes)</th>
+                            <th>Type</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="(file, index) in files" :key="index">
+                            <td>
+                                <input type="checkbox" v-model="file.selected"/>
+                            </td>
+                            <td>
+                                <button @click="playAudio(index)" v-if="file.type.startsWith('audio')">
+                                    <i class="bi bi-play-circle"></i>
+                                </button>
+                            </td>
+                            <td>{{ file.name }}</td>
+                            <td>{{ bytesToMB(file.size) }}
+                                MB</td>
+                            <td>{{ file.type }}</td>
+                            <td>{{ file.status }}</td>
+                            <td>
+                                <div v-if="file.status === 'uploading'">
+                                    <button @click="cancelUpload(index)" class="btn btn-sm btn-danger">Cancel</button>
+                                    <button
+                                        @click="pauseUpload(index)"
+                                        v-if="file.status === 'uploading'"
+                                        class="btn btn-sm btn-warning">Pause</button>
+                                    <button
+                                        @click="resumeUpload(index)"
+                                        v-if="file.status === 'paused'"
+                                        class="btn btn-sm btn-success">Resume</button>
+                                </div>
+                                <div v-if="file.status === 'done'">
+                                    <button @click="deleteFile(index)" class="btn btn-sm btn-danger">Remove from List</button>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
-            <div
-                class="drop-zone border rounded p-3 mb-3 text-center"
-                @dragover="onDragOver"
-                @drop="onDrop"
-                @dragleave="onDragLeave"
-                :class="{'bg-info': isDraggingOver}">
-                <p v-if="showDropMessage">여기에 파일을 끌어오세요.</p>
-                <div class="mt-4">
-                    <h2>음원 목록</h2>
-                    <table class="table table-bordered table-hover">
-                        <thead class="thead-light">
-                            <tr>
-                                <th><input type="checkbox" v-model="selectAll" @change="toggleSelectAll"/></th>
-                                <th>Play</th>
-                                <th>Name</th>
-                                <th>Size (bytes)</th>
-                                <th>Type</th>
-                                <th>Status</th>
-                                <th>Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr v-for="(file, index) in files" :key="index">
-                                <td>
-                                    <input type="checkbox" v-model="file.selected"/>
-                                </td>
-                                <td>
-                                    <button @click="playAudio(index)" v-if="file.type.startsWith('audio')">
-                                        <i class="bi bi-play-circle"></i>
-                                    </button>
-                                </td>
-                                <td>{{ file.name }}</td>
-                                <td>{{ bytesToMB(file.size) }}
-                                    MB</td>
-                                <td>{{ file.type }}</td>
-                                <td>{{ file.status }}</td>
-                                <td>
-                                    <div v-if="file.status === 'uploading'">
-                                        <button @click="cancelUpload(index)" class="btn btn-sm btn-danger">Cancel</button>
-                                        <button
-                                            @click="pauseUpload(index)"
-                                            v-if="file.status === 'uploading'"
-                                            class="btn btn-sm btn-warning">Pause</button>
-                                        <button
-                                            @click="resumeUpload(index)"
-                                            v-if="file.status === 'paused'"
-                                            class="btn btn-sm btn-success">Resume</button>
-                                    </div>
-                                    <div v-if="file.status === 'done'">
-                                        <button @click="deleteFile(index)" class="btn btn-sm btn-danger">Remove from List</button>
-                                    </div>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <div class="mt-4">
-                    <h2>대기열 목록</h2>
-                    <table class="table table-bordered table-hover">
-                        <thead class="thead-light">
-                            <tr>
-                                <th><input type="checkbox" v-model="selectAllQueue" @change="toggleSelectAllQueue"/></th>
-                                <th>Name</th>
-                                <th>Progress (%)</th>
-                                <th>Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr v-for="(file, index) in queuedFiles" :key="index">
-                                <td><input type="checkbox" v-model="file.selected"/></td>
-                                <td>{{ file.name }}</td>
-                                <td>
-                                    <div class="progress">
-                                        <div
-                                            class="progress-bar"
-                                            role="progressbar"
-                                            :style="{ width: file.progress + '%' }"
-                                            :aria-valuenow="file.progress"
-                                            aria-valuemin="0"
-                                            aria-valuemax="100">
-                                            {{ file.progress }}%
-                                        </div>
-                                    </div>
-                                </td>
-                                <td>
-                                    <button @click="removeFromQueue(index)" class="btn btn-sm btn-danger">Remove from Queue</button>
-                                    <button @click="deleteFileFromServer(index)" class="btn btn-sm btn-danger">Delete from Server</button>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <button @click="uploadSelectedQueuedFiles" class="btn btn-primary">Upload Selected</button>
-                    <!-- 변경된 Upload 버튼 -->
-                </div>
-            </div>
+        </div>
+        <div class="text-center">
+            <button @click="addToQueue" class="btn btn-primary">추가</button>
+        </div>
+        <div class="mt-4">
+            <h2>대기열 목록</h2>
+            <table class="table table-bordered table-hover">
+                <thead class="thead-light">
+                    <tr>
+                        <th><input type="checkbox" v-model="selectAllQueue" @change="toggleSelectAllQueue"/></th>
+                        <th>Name</th>
+                        <th>Progress (%)</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr v-for="(file, index) in queuedFiles" :key="index">
+                        <td><input type="checkbox" v-model="file.selected"/></td>
+                        <td>{{ file.name }}</td>
+                        <td>
+                            <div class="progress">
+                                <div
+                                    class="progress-bar"
+                                    role="progressbar"
+                                    :style="{ width: file.progress + '%' }"
+                                    :aria-valuenow="file.progress"
+                                    aria-valuemin="0"
+                                    aria-valuemax="100">
+                                    {{ file.progress }}%
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <button @click="removeFromQueue(index)" class="btn btn-sm btn-danger">Remove from Queue</button>
+                            <button @click="deleteFileFromServer(index)" class="btn btn-sm btn-danger">Delete from Server</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <button @click="uploadSelectedQueuedFiles" class="btn btn-primary">Upload Selected</button>
+            <!-- 변경된 Upload 버튼 -->
         </div>
     </template>
     <script>
-        import axios from 'axios';
+        import firebase from 'firebase/compat/app';
+        import 'firebase/compat/auth';
+        import 'firebase/compat/firestore';
+        import 'firebase/compat/storage';
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyDFS4m9Z5s-aFrf_V9foIwwmrRqmYTVCm4",
+            authDomain: "audio-defence-frontend.firebaseapp.com",
+            databaseURL: "https://audio-defence-frontend-default-rtdb.firebaseio.com",
+            projectId: "audio-defence-frontend",
+            storageBucket: "audio-defence-frontend.appspot.com",
+            messagingSenderId: "690714724840",
+            appId: "1:690714724840:web:6a3551e9b76668e37b7c5d"
+        };
+        // Firebase 초기화
+
+        const firebaseApp = firebase.initializeApp(firebaseConfig);
+        const storage = firebaseApp.storage();
+
         export default {
             data() {
                 return {
@@ -165,41 +184,43 @@
                             selected: this.selectAllQueue
                         }));
                 },
-                async uploadSelectedQueuedFiles() { // 선택된 대기열 목록에 있는 파일들만 업로드하는 메서드
+                async uploadSelectedQueuedFiles() {
+                    const storageRef = storage.ref();
+
                     for (let i = 0; i < this.queuedFiles.length; i++) {
-                        const {file, selected,} = this.queuedFiles[i];
+                        const {file, selected} = this.queuedFiles[i];
                         if (!selected) 
                             continue;
                         
-                        const formData = new FormData();
-                        formData.append("file", file, encodeURIComponent(file.name));
+                        const filePath = `${file.name}`;
+                        const uploadTask = storageRef
+                            .child(filePath)
+                            .put(file);
+
                         this
                             .queuedFiles[i]
                             .status = "uploading";
 
-                        try {
-                            const response = await axios.post("http://localhost:3000/upload", formData, {
-                                onUploadProgress: (progressEvent) => {
-                                    this
-                                        .queuedFiles[i]
-                                        .progress = Math.round((progressEvent.loaded / progressEvent.total) * 100);
-                                }
-                            });
-
-                            if (response.status === 200) {
-                                this
-                                    .queuedFiles[i]
-                                    .status = "done";
-                            } else {
-                                this
-                                    .queuedFiles[i]
-                                    .status = "error";
-                            }
-                        } catch (error) {
+                        uploadTask.on("state_changed", (snapshot) => {
+                            this
+                                .queuedFiles[i]
+                                .progress = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
+                        }, (error) => {
                             this
                                 .queuedFiles[i]
                                 .status = "error";
-                        }
+                            console.error(error);
+                        }, async () => {
+                            this
+                                .queuedFiles[i]
+                                .status = "done";
+                            const url = await storageRef
+                                .child(filePath)
+                                .getDownloadURL();
+                            this
+                                .queuedFiles[i]
+                                .url = url;
+                        });
                     }
                 },
                 addToQueue() {
@@ -291,7 +312,6 @@
                                 .files[index]
                                 .status = "deleted";
                             alert("File deleted from server.");
-
                             // Remove the file from the queuedFiles array
                             const queuedFileIndex = this
                                 .queuedFiles
@@ -344,7 +364,6 @@
                         this.playingAudio = null;
                         this.playingIndex = -1;
                     }
-
                     if (index !== this.playingIndex) {
                         const audio = new Audio(URL.createObjectURL(this.files[index].file));
                         audio.play();
