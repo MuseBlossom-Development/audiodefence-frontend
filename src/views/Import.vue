@@ -65,7 +65,7 @@
                                         class="btn btn-sm btn-success">Resume</button>
                                 </div>
                                 <div v-if="file.status === 'done'">
-                                    <button @click="deleteFile(index)" class="btn btn-sm btn-danger">Remove from List</button>
+                                    <button @click="deleteFile(index)" class="btn btn-sm btn-danger">x</button>
                                 </div>
                             </td>
                         </tr>
@@ -115,8 +115,8 @@
                                             </div>
                                         </td>
                                         <td>
-                                            <button @click="removeFromQueue(index)" class="btn btn-sm btn-danger">Remove from Queue</button>
-                                            <button @click="deleteFileFromServer(index)" class="btn btn-sm btn-danger">Delete from Server</button>
+                                            <button @click="removeFromQueue(index)" class="btn btn-sm btn-danger">삭제</button>
+                                            <!-- <button @click="deleteFileFromServer(index)" class="btn btn-sm btn-danger">완전 삭제</button> -->
                                         </td>
                                     </tr>
                                 </tbody>
