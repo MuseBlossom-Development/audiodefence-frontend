@@ -1,22 +1,13 @@
 module.exports = {
-    devServer: {
-        proxy: {
-            "/api": {
-                target: "http://localhost:3000"
-            }
-        }
-    }
+  pwa: {
+    name: 'Vue Argon Design',
+    themeColor: '#172b4d',
+    msTileColor: '#172b4d',
+    appleMobileWebAppCapable: 'yes',
+    appleMobileWebAppStatusBarStyle: '#172b4d'
+  },
+  css: {
+    // Enable CSS source maps.
+    sourceMap: process.env.NODE_ENV !== 'production'
+  }
 }
-// const { defineConfig } = require('@vue/cli-service')
-// module.exports = defineConfig({
-//   transpileDependencies: true,
-//   lintOnSave: false,
-//   devServer:{
-//     proxy:{
-//       "/api":{
-//         target:"http://localhost:3000/",
-//         changeOrigin: true,
-//       }
-//     }
-//   }
-// });

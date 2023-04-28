@@ -1,6 +1,10 @@
 <template>
-    <div class="authincation section-padding">
-        <div class="container h-100">
+    <b-container
+        fluid="fluid"
+        class="shape-container d-flex align-items-center py-lg">
+        <b-row class="col-12 text-center">
+            <div class="content-body">
+                <div class="container h-100">
             <div class="row justify-content-center h-100 align-items-center">
                 <div class="col-xl-5 col-md-6">
                     <div class="mini-logo text-center my-4">
@@ -52,47 +56,54 @@
                     </div>
                 </div>
             </div>
-        </div>
-    </template>
-    <script>
-        import SignupValidations from '../services/SignupValidations';
-        import {mapActions, mapMutations} from 'vuex';
-        import {LOADING_SPINNER_SHOW_MUTATION, SIGNUP_ACTION} from '../store/storeconstants';
-        export default {
-            data() {
-                return {email: '', password: '', errors: [], error: ''};
-            },
-            beforeRouteLeave() {
-                console.log('rote leaving');
-                console.log(this.$store);
-            },
-            beforeRouteEnter(_, _1, next) {
-                next((vm) => {
-                    console.log('route entering');
-                    console.log(vm.$store.state.auth);
-                });
-            },
-            methods: {
-                ...mapActions('auth', {signup: SIGNUP_ACTION}),
-                ...mapMutations({showLoading: LOADING_SPINNER_SHOW_MUTATION}),
-                async onSignup() {
-                    let validations = new SignupValidations(this.email, this.password,);
-                    this.errors = validations.checkValidations();
-                    if ('email' in this.errors || 'password' in this.errors) {
-                        return false;
-                    }
-                    //make spinner true
-                    this.showLoading(true);
-                    //signup registration
-                    try {
-                        await this.signup({email: this.email, password: this.password});
-                    } catch (error) {
-                        this.error = error;
-                        this.showLoading(false);
-                    }
-                    this.showLoading(false);
-                    //make spinner false
+            </div>
+        </b-row>
+    </b-container>
+</template>
+<script>
+    import SignupValidations from '../services/SignupValidations';
+    import {mapActions, mapMutations} from 'vuex';
+    import {LOADING_SPINNER_SHOW_MUTATION, SIGNUP_ACTION} from '../store/storeconstants';
+    export default {
+        data() {
+            return {email: '', password: '', errors: [], error: ''};
+        },
+        beforeRouteLeave() {
+            console.log('rote leaving');
+            console.log(this.$store);
+        },
+        beforeRouteEnter(_, _1, next) {
+            next((vm) => {
+                console.log('route entering');
+                console.log(vm.$store.state.auth);
+            });
+        },
+        methods: {
+            ...mapActions('auth', {signup: SIGNUP_ACTION}),
+            ...mapMutations({showLoading: LOADING_SPINNER_SHOW_MUTATION}),
+            async onSignup() {
+                let validations = new SignupValidations(this.email, this.password,);
+                this.errors = validations.checkValidations();
+                if ('email' in this.errors || 'password' in this.errors) {
+                    return false;
                 }
+                //make spinner true
+                this.showLoading(true);
+                //signup registration
+                try {
+                    await this.signup({email: this.email, password: this.password});
+                } catch (error) {
+                    this.error = error;
+                    this.showLoading(false);
+                }
+                this.showLoading(false);
+                //make spinner false
             }
-        };
-    </script>
+        }
+    };
+</script>
+<style scoped>
+.row{
+        margin:3% auto;
+    }
+</style>
